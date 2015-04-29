@@ -1,0 +1,30 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.mobileappexpert.testpng.MainActivity" >
+
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        android:showAsAction="never"/>
+    <item
+            android:id="@+id/save"
+            android:orderInCategory="100"
+            android:title="save"
+            android:showAsAction="never"/>
+    <item
+            android:id="@+id/clear"
+            android:orderInCategory="100"
+            android:title="clear"
+            android:showAsAction="never"/>
+    <item
+            android:id="@+id/render"
+            android:orderInCategory="100"
+            android:title="render"
+            android:showAsAction="never"/>
+    <!--<item-->
+            <!--android:id="@+id/zoom"-->
+            <!--android:orderInCategory="100"-->
+            <!--android:title="enableZoom"-->
+            <!--android:showAsAction="never"/>-->
+</menu>
