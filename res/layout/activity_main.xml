@@ -4,12 +4,35 @@
     android:layout_height="match_parent"
     tools:context="com.mobileappexpert.testpng.MainActivity" >
 
-    <LinearLayout
-        android:id="@+id/layAssemblies"
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="3.4" >
+        android:layout_height="match_parent"
+        android:id="@+id/root"
+        android:background="@android:color/holo_blue_dark"
+        android:layout_below="@+id/linearLayout1" >
+
+        <RelativeLayout
+                android:id="@+id/planLayout"
+                android:padding="4dp"
+                android:background="@android:color/holo_red_dark"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+            <ImageView
+                    android:id="@+id/base_plan"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_ba2" />
+        </RelativeLayout>
+    </RelativeLayout>
+    <LinearLayout
+            android:id="@+id/layAssemblies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@android:color/darker_gray"
+            android:weightSum="3.4" >
 
         <LinearLayout
                 android:layout_width="0dp"
@@ -18,78 +41,106 @@
                 android:orientation="horizontal" >
 
             <ImageView
-                    android:id="@+id/img1"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:layout_marginRight="20dp"
+                    android:id="@+id/switch_image"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:src="@drawable/swch" />
 
             <ImageView
-                    android:id="@+id/img11"
-                    android:layout_width="70dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_height="70dp"
+                    android:id="@+id/cabel"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:src="@drawable/cable" />
             <ImageView
-                    android:id="@+id/img2"
-                    android:layout_width="70dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_height="70dp"
+                    android:id="@+id/fan"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:src="@drawable/ceilingfan" />
             <ImageView
-                    android:id="@+id/img3"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:layout_marginRight="20dp"
+                    android:id="@+id/ic_launcher"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:src="@drawable/ic_launcher" />
+
+            <Button
+                    android:text="+"
+                    android:id="@+id/buttonZoomIn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <Button
+                    android:text="-"
+                    android:id="@+id/buttonZoomOut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
             <ImageView
-                    android:id="@+id/img6"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:layout_marginRight="20dp"
+                    android:id="@+id/cross"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:src="@drawable/cross" />
+
         </LinearLayout>
-          <FrameLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5" >
+
+      <!--  <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5" >
 
             <ImageView
-                android:id="@+id/img4"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:src="@drawable/rotate1" />
+                    android:id="@+id/img4"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/rotate1" />
         </FrameLayout>
-          <FrameLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5" >
+        <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5" >
 
             <ImageView
-                android:id="@+id/img5"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:src="@drawable/rotate2" />
-        </FrameLayout>
+                    android:id="@+id/img5"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/rotate2" />
+
+        </FrameLayout>-->
     </LinearLayout>
+    <!--<LinearLayout-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:background="@android:color/darker_gray"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:paddingBottom="20dp"-->
+            <!--android:layout_below="@+id/layAssemblies"-->
+            <!--android:id="@+id/linearLayout1">-->
+      <!-- -->
+        <!--&lt;!&ndash;<Button-->
+                <!--android:text=">"-->
+                <!--android:id="@+id/right"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"/>-->
+        <!--<Button-->
+                <!--android:text="left"-->
+                <!--android:id="@+id/left"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"/>-->
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/root"
-        android:layout_below="@id/layAssemblies" >
-
-        <com.mobileappexpert.testpng.TouchableImageView
-                android:id="@+id/adsf"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                android:src="@drawable/img_ba2" />
-        <RelativeLayout
-                android:id="@+id/layLayerImage"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-        </RelativeLayout>
-    </RelativeLayout>
+        <!--<Button-->
+                <!--android:text="^"-->
+                <!--android:id="@+id/top"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"/>-->
+        <!--<Button-->
+                <!--android:text="v"-->
+                <!--android:id="@+id/bottom"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"/>-->
+        <!--<Button-->
+                <!--android:text="N"-->
+                <!--android:id="@+id/buttonNormal"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"/>&ndash;&gt;-->
+    <!--</LinearLayout>-->
 
 </RelativeLayout>
