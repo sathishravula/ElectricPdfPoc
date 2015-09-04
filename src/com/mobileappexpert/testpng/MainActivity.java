@@ -66,7 +66,8 @@ public class MainActivity extends Activity implements OnClickListener, View.OnDr
     findViewById(R.id.switch_image).setOnClickListener(this);
     findViewById(R.id.cabel).setOnClickListener(this);
     findViewById(R.id.fan).setOnClickListener(this);
-    findViewById(R.id.ic_launcher).setOnClickListener(this);
+//    findViewById(R.id.ic_launcher).setOnClickListener(this);
+    findViewById(R.id.rotate).setOnClickListener(this);
     findViewById(R.id.cross).setOnClickListener(this);
 
     Button buttonZoomOut = (Button) findViewById(R.id.buttonZoomOut);
@@ -78,9 +79,8 @@ public class MainActivity extends Activity implements OnClickListener, View.OnDr
     relativeLayout = (RelativeLayout) findViewById(R.id.planLayout);
     root = (RelativeLayout) findViewById(R.id.root);
 
-//    scaleGestureDetector = new ScaleGestureDetector(this, new OnPinchListener());
-//    applyZoom();
     relativeLayout.setOnTouchListener(onTouchListener);
+
     relativeLayout.setOnDragListener(this);
   }
 
@@ -146,8 +146,10 @@ public class MainActivity extends Activity implements OnClickListener, View.OnDr
         break;
       case R.id.clear:
 //        relativeLayout.removeAllViews();
-        for (int index = 1; index < relativeLayout.getChildCount(); index++)
+        int childCount = relativeLayout.getChildCount();
+        for (int index = childCount - 1; index > 0; index--) {
           relativeLayout.removeViewAt(index);
+        }
         placeAssemblies.clear();
         iconMapping.clear();
         break;
@@ -172,6 +174,7 @@ public class MainActivity extends Activity implements OnClickListener, View.OnDr
     Document document = new Document();
     String directoryPath = Environment.getExternalStorageDirectory().toString();
     File newPdfFile = new File(directoryPath, "plan.pdf");
+    Log.d("test11", "hai:" + newPdfFile);
     try {
       PdfWriter.getInstance(document, new FileOutputStream(newPdfFile));
       document.open();
@@ -335,9 +338,16 @@ public class MainActivity extends Activity implements OnClickListener, View.OnDr
           int index = (Integer) removeView.getTag();
           try {
             placeAssemblies.remove(index);
+            removeView = null;
           } catch (IndexOutOfBoundsException e) {
             e.printStackTrace();
           }
+        }
+        break;
+
+      case R.id.rotate:
+        if (removeView != null) {
+//          rotate((ImageView) removeView, 45);
         }
         break;
     }
@@ -359,8 +369,8 @@ public class MainActivity extends Activity implements OnClickListener, View.OnDr
         Log.d(LOGCAT, "Dropped");
         View view = (View) dragevent.getLocalState();
         RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) view.getLayoutParams();
-        params.topMargin = (int) dragevent.getY() - view.getHeight() / 2;
-        params.leftMargin = (int) dragevent.getX() - view.getWidth() / 2;
+        params.topMargin = (int) dragevent.getY() - (view.getHeight() / 2)+relativeLayout.getScrollY();
+        params.leftMargin = (int) dragevent.getX() - (view.getWidth() / 2)+relativeLayout.getScrollX();
         Log.d(LOGCAT, "X4:" + dragevent.getX() + "  Y4:" + dragevent.getY());
         view.setLayoutParams(params);
         view.setVisibility(View.VISIBLE);
@@ -434,13 +444,13 @@ public class MainActivity extends Activity implements OnClickListener, View.OnDr
                 Toast.LENGTH_SHORT).show();
 
             ImageView img = new ImageView(context);
-//            img.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
             img.setImageResource(assembly[selected]);
 //            img.setOnTouchListener(new DragTouchListener());
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                 70, 70);
-            params.leftMargin = (int) event.getX() - 35;
-            params.topMargin = (int) event.getY() - 35;
+            Log.d(LOGCAT, "getScrollX:" + relativeLayout.getScrollX() + "  getScrollX:" + relativeLayout.getScrollY());
+            params.leftMargin = (int) event.getX() - 35 + v.getScrollX();
+            params.topMargin = (int) event.getY() - 35 + v.getScrollY();
             int key = 1000 + placeAssemblies.size();
             img.setId(key);
 
@@ -536,10 +546,10 @@ public class MainActivity extends Activity implements OnClickListener, View.OnDr
             Log.d(LOGCAT, "X1:" + currentX + "  Y1:" + currentY);
             Log.d(LOGCAT, "X2:" + x2 + "  Y2:" + y2);
             Log.d(LOGCAT, "X3:" + event.getX() + "  Y3:" + event.getY());
-            relativeLayout.scrollBy(currentX - x2, currentY - y2);
             Log.d(LOGCAT, "getLeft:" + relativeLayout.getScrollX() + "  getRight:" + relativeLayout.getScrollY());
-
-
+            int x = currentX - x2;
+            int y = currentY - y2;
+            relativeLayout.scrollBy(x, y);
             currentX = x2;
             currentY = y2;
           }

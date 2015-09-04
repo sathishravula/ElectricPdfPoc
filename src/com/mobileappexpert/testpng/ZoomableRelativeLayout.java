@@ -38,6 +38,8 @@ public class ZoomableRelativeLayout extends RelativeLayout {
 
   public void scale(float scaleFactor, float pivotX, float pivotY) {
     mScaleFactor = scaleFactor;
+    if(mScaleFactor<1)
+      mScaleFactor=1;
     mPivotX = pivotX;
     mPivotY = pivotY;
     this.invalidate();
